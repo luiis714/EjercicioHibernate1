@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: EjercicioHibernate1_LuisM.EjercicioHibernate1_LuisM.AppTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.031 s - in EjercicioHibernate1_LuisM.EjercicioHibernate1_LuisM.AppTest

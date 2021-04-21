@@ -31,6 +31,8 @@ public class Main
     public static void main( String[] args )
     {
     	Session session = HibernateUtil.getSessionFactory().openSession();
+    	System.out.println("Sesión iniciada");
+    	logger.info("Sesion iniciada");
     	Transaction tx = null;
     	
     	try {
@@ -43,7 +45,7 @@ public class Main
   				
   				switch(opc) {
   					case INSERT_EMPLEADO:
-  						insertarEmpleado();
+  						//insertarEmpleado();
   						
   						break;
   					case GET_EMPLEADO:
@@ -73,16 +75,20 @@ public class Main
   		  if (tx != null) {
   		    tx.rollback();
   		  }
-  			logger.error(String.format("%1$s: error when inserting registries.", Main.class.getSimpleName() + ".main()"), e);
+  		  logger.error(String.format("%1$s: error when inserting registries.", Main.class.getSimpleName() + ".main()"), e);
   		}
   		finally {
   			if (session != null) {
   				session.close();
+  				logger.info("Sesion cerrada");
+  				System.out.println("Sesión cerrada");
   			}
   		}
     	
 		//logger.info(String.format("%1$s: ---> %2$s.", methodName, modifiedProvider.toString()));
 		session.close();
+		logger.info("Sesion cerrada");
+		System.out.println("Sesión cerrada");
 		
 		//logger.info(String.format("%1$s: >>>>>> Main execution finished.", methodName));
     }
