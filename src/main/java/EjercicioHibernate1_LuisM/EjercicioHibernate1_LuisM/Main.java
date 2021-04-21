@@ -99,12 +99,12 @@ public class Main
 
 	private static int mostrarMenu() {
 		System.out.println(INSERT_EMPLEADO + ". Insertar un empleado");
-		System.out.println(GET_EMPLEADO + ". Insertar un empleado");
-		System.out.println(GET_EMPLEADO_ID + ". Insertar un empleado");
-		System.out.println(INSERT_DEPARTAMENTO + ". Insertar un empleado");
-		System.out.println(GET_DEPARTAMENTO + ". Insertar un empleado");
-		System.out.println(GET_DEPARTAMENTO_ID + ". Insertar un empleado");
-		System.out.println(SALIR + ". Insertar un empleado");
+		System.out.println(GET_EMPLEADO + ". Muestra todos los empleados");
+		System.out.println(GET_EMPLEADO_ID + ". Muestra empleado por ID");
+		System.out.println(INSERT_DEPARTAMENTO + ". Insertar un departamento");
+		System.out.println(GET_DEPARTAMENTO + ". Muestra todos los departamentos");
+		System.out.println(GET_DEPARTAMENTO_ID + ". Muestra departamento por ID");
+		System.out.println(SALIR + ". Salir");
 		
 		System.out.print("Seleccione una opción:\t");
 		int opc = teclado.nextInt();
@@ -118,6 +118,6 @@ public class Main
 			System.out.println("");
 		
 		System.out.println("Pulsa ENTER para continuar...");
-		teclado.next();
+		teclado.nextLine();
 	}
 }
