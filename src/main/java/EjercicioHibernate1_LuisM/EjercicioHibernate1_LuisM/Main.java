@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import EjercicioHibernate1_LuisM.EjercicioHibernate1_LuisM.datamodel.dao.EmpleadoDAO;
+import EjercicioHibernate1_LuisM.EjercicioHibernate1_LuisM.datamodel.entities.Empleado;
 import EjercicioHibernate1_LuisM.EjercicioHibernate1_LuisM.datamodel.util.HibernateUtil;
 
 public class Main 
@@ -41,11 +42,12 @@ public class Main
   			
   			int opc = ERROR;
   			do {
+  				limpia();
   				opc = mostrarMenu();
   				
   				switch(opc) {
   					case INSERT_EMPLEADO:
-  						//insertarEmpleado();
+  						insertarEmpleado(session);
   						
   						break;
   					case GET_EMPLEADO:
@@ -63,11 +65,12 @@ public class Main
   					case GET_DEPARTAMENTO_ID:
   						
   						break;
+  					case SALIR:
+  						System.out.println("Hasta pronto...");
+  						break;
   					default:
   						System.out.println("No se reconoce la opción seleccionada.");
   				}
-  				
-  				limpia();
   				tx.commit();//Commit a la BD
   			}while(opc != SALIR);
   			
@@ -93,7 +96,32 @@ public class Main
 		//logger.info(String.format("%1$s: >>>>>> Main execution finished.", methodName));
     }
 
-	private static void insertarEmpleado() {
+	private static void insertarEmpleado(Session s) {
+		limpia();
+		Empleado empleado = new Empleado();
+		
+		System.out.println("Nombre: ");
+		empleado.setNombreEmpleado(teclado.nextLine());
+		System.out.println("Primer apellido: ");
+		empleado.setApellido1(teclado.nextLine());
+		System.out.println("Segundo apellido: ");
+		empleado.setApellido2(teclado.nextLine());
+		System.out.println("Lugar nacimiento: ");
+		empleado.setLugarNacimiento(teclado.nextLine());
+		System.out.println("Fecha nacimiento(YYYYMMDD): ");
+		empleado.setFechaNacimiento(teclado.nextLine());
+		System.out.println("Dirección: ");
+		empleado.setDireccion(teclado.nextLine());
+		System.out.println("Telefono: ");
+		empleado.setTelefono(teclado.nextLine());
+		System.out.println("Puesto: ");
+		empleado.setPuesto(teclado.nextLine());
+		System.out.println("Codigo departamento: ");
+		empleado.setCodDepartamento(teclado.nextInt());
+		
+		logger.info("Empleado creado. " + empleado.toString());
+		
+		EmpleadoDAO.insertarEmpleado(s, empleado);
 		
 	}
 
@@ -114,10 +142,11 @@ public class Main
 	
 	/**Método que simula un borrado de pantalla en la consola*/
 	private static void limpia() {
+		System.out.println("Pulsa ENTER para continuar...");
+		teclado.nextLine();
+		
 		for(short i = 0; i < LINEAS; i++)
 			System.out.println("");
 		
-		System.out.println("Pulsa ENTER para continuar...");
-		teclado.nextLine();
 	}
 }
