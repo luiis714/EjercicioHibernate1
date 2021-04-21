@@ -1,5 +1,7 @@
 package EjercicioHibernate1_LuisM.EjercicioHibernate1_LuisM.datamodel.entities;
 
-public class Empleado {
+import java.io.Serializable;
+
+public class Empleado implements Serializable{
 
 }

@@ -8,7 +8,7 @@
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/empresa</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-        <mapping resource="Provider.hbm.xml"/>
-        <mapping resource="Provider.hbm.xml"/>
+        <mapping resource="Departamento.hbm.xml"/>
+        <mapping resource="Empleado.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>
