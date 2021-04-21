@@ -23,7 +23,7 @@
 		<property generated="never" lazy="false" name="direccion" type="java.lang.String">
 			<column name="direccion"/>
 		</property>
-				<property generated="never" lazy="false" name="telefono" type="java.lang.String">
+		<property generated="never" lazy="false" name="telefono" type="java.lang.String">
 			<column name="telefono"/>
 		</property>
 		<property generated="never" lazy="false" name="puesto" type="java.lang.String">

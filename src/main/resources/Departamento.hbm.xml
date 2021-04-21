@@ -5,7 +5,7 @@
 		<id name="codigoDepartamento" type="int">
 			<column name="codigo"/>
 		</id>
-		<property generated="never" lazy="false" name="nombre" type="java.lang.String">
+		<property generated="never" lazy="false" name="nombreDepartamento" type="java.lang.String">
 			<column name="nombre"/>
 		</property>
 		<property generated="never" lazy="false" name="codResponsable" type="int">
