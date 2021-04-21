@@ -2,15 +2,21 @@ package EjercicioHibernate1_LuisM.EjercicioHibernate1_LuisM.datamodel.dao;
 
 import java.util.List;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 
+import EjercicioHibernate1_LuisM.EjercicioHibernate1_LuisM.Main;
 import EjercicioHibernate1_LuisM.EjercicioHibernate1_LuisM.datamodel.entities.Departamento;
 import EjercicioHibernate1_LuisM.EjercicioHibernate1_LuisM.datamodel.entities.Empleado;
 
 public class EmpleadoDAO {
+	private static Logger logger = LogManager.getLogger(Main.class);
 	
 	public static void insertarEmpleado(Session s, Empleado empleado) {
 		s.save(empleado);
+		logger.info("Empleado insertado. " + empleado.toString());
+		
 	}
 	
 	public static List<Empleado> getAllEmpleados(Session s){

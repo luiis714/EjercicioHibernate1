@@ -72,6 +72,7 @@ public class Main
   						System.out.println("No se reconoce la opción seleccionada.");
   				}
   				tx.commit();//Commit a la BD
+  				logger.info("Se ha hecho un commit a la BD");
   			}while(opc != SALIR);
   			
   		} catch (Exception e) {
@@ -122,7 +123,6 @@ public class Main
 		logger.info("Empleado creado. " + empleado.toString());
 		
 		EmpleadoDAO.insertarEmpleado(s, empleado);
-		
 	}
 
 	private static int mostrarMenu() {
