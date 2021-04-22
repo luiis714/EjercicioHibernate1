@@ -14,6 +14,7 @@ public class EmpleadoDAO {
 	private static Logger logger = LogManager.getLogger(Main.class);
 	
 	public static void insertEmpleado(Session s, Empleado empleado) {
+		
 		s.save(empleado);
 		logger.info("Empleado insertado. " + empleado.toString());
 		
@@ -35,5 +36,27 @@ public class EmpleadoDAO {
 									.setMaxResults(1)
 									.uniqueResult();
 		return empleado;
+	}
+
+	public static Empleado getEmpleado_Departamento(Session session, int codDepartamento) {
+		String hQuery = " from Empleado e " +
+                " where e.codDepartamento = :codDepartamento";
+		
+		Empleado empleado= session.createQuery(hQuery, Empleado.class)
+									.setParameter("codDepartamento", codDepartamento)
+									.setMaxResults(1)
+									.uniqueResult();
+		return empleado;
+	}
+
+	public static List<Empleado> getEmpleados_Departamento(Session session, int codDepartamento) {
+		String hQuery = " from Empleado e " +
+                " where e.codDepartamento = :codDepartamento";
+		
+		List<Empleado> listaEmpleados = session.createQuery(hQuery, Empleado.class)
+												.setParameter("codDepartamento", codDepartamento)
+												.list();
+		
+		return listaEmpleados;
 	}
 }

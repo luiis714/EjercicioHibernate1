@@ -14,7 +14,7 @@ import javax.persistence.Table;
 public class Departamento implements Serializable{
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "codigo")
 	private int codigoDepartamento;
 	
@@ -24,10 +24,12 @@ public class Departamento implements Serializable{
 	@Column(name="cod_responsable", nullable=false)
 	private int codResponsable;
 	
+	/**Constructor sin parametros*/
 	public Departamento() {
 		
 	}
 	
+	/**Constructor con todos sus parametros*/
 	public Departamento(int codigoDepartamento, String nombreDepartamento, int codResponsable) {
 		this.codigoDepartamento = codigoDepartamento;
 		this.nombreDepartamento = nombreDepartamento;

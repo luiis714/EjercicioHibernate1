@@ -9,7 +9,6 @@ import javax.persistence.*;
 public class Empleado implements Serializable{
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "codigo")
 	private int codigoEmpleado;
 	
@@ -40,10 +39,12 @@ public class Empleado implements Serializable{
 	@Column(name="cod_departamento", nullable=false)
 	private int codDepartamento;
 	
+	/**Constructor sin parametros*/
 	public Empleado() {
 		
 	}
 	
+	/**Constructor con todos sus parametros*/
 	public Empleado(int codigoEmpleado, String nombreEmpleado, String apellido1, String apellido2, String lugarNacimiento, String fechaNacimiento, String direccion, String telefono, String puesto, int codDepartamento) {
 		this.codigoEmpleado = codigoEmpleado;
 		this.nombreEmpleado = nombreEmpleado;

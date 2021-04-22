@@ -25,7 +25,9 @@ public class Main
 	private static final int INSERT_DEPARTAMENTO = 4;
 	private static final int GET_DEPARTAMENTOS = 5;
 	private static final int GET_DEPARTAMENTO_ID = 6;
-	private static final int SALIR = 7;
+	private static final int GET_EMPLEADOS_DEPARTAMENTO = 7;
+	private static final int GET_EMPLEADOS_MAYOR = 8;
+	private static final int SALIR = 9;
 	
 	private static Logger logger = LogManager.getLogger(Main.class);
 	private static Scanner teclado = new Scanner(System.in);
@@ -79,6 +81,13 @@ public class Main
   						muestraDepartamento(session);
   						
   						break;
+  					case GET_EMPLEADOS_DEPARTAMENTO:
+  						muestraEmpleadosDepartamento(session);
+  						
+  						break;
+  					case GET_EMPLEADOS_MAYOR:
+  						
+  						break;
   					case SALIR:
   						System.out.println("Hasta pronto...");
   						break;
@@ -96,6 +105,8 @@ public class Main
   		  logger.error(String.format("%1$s: error when inserting registries.", Main.class.getSimpleName() + ".main()"), e);
   		}
   		finally {
+  			teclado.close();
+  			
   			if (session != null) {
   				session.close();
   				logger.info("Sesion cerrada");
@@ -111,6 +122,22 @@ public class Main
 		//logger.info(String.format("%1$s: >>>>>> Main execution finished.", methodName));
     }
 
+	private static void muestraEmpleadosDepartamento(Session session) {
+		limpia();
+		System.out.println("Codigo departamento: ");
+		int codDepartamento = teclado.nextInt();
+		
+		List<Empleado> empleados = EmpleadoDAO.getEmpleados_Departamento(session, codDepartamento);
+
+		for(short i = 0; i < empleados.size(); i++) {
+			Empleado e = empleados.get(i);
+			
+			System.out.println(e.toString());
+			
+			logger.info("Empleado " + i + e.toString());
+		}
+	}
+
 	private static void muestraDepartamento(Session session) {
 		limpia();
 		System.out.println("Codigo departamento: ");
@@ -119,7 +146,7 @@ public class Main
 		Departamento d = DepartamentoDAO.getDepartamento(session, codDepartamento);
 		
 		System.out.println(d.toString());
-		logger.info("Empleado " + d.toString());
+		logger.info("Departamento " + d.toString());
 		
 	}
 
@@ -218,6 +245,8 @@ public class Main
 		System.out.println(INSERT_DEPARTAMENTO + ". Insertar un departamento");
 		System.out.println(GET_DEPARTAMENTOS + ". Muestra todos los departamentos");
 		System.out.println(GET_DEPARTAMENTO_ID + ". Muestra departamento por ID");
+		System.out.println(GET_EMPLEADOS_DEPARTAMENTO + ". Muestra empleados por departamento");
+		System.out.println(GET_EMPLEADOS_MAYOR + ". Muestra empleados por mayores que...");
 		System.out.println(SALIR + ". Salir");
 		
 		System.out.print("Seleccione una opción:\t");
