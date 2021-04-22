@@ -2,10 +2,26 @@ package EjercicioHibernate1_LuisM.EjercicioHibernate1_LuisM.datamodel.entities;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="departamento")
 public class Departamento implements Serializable{
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "codigo")
 	private int codigoDepartamento;
+	
+	@Column(name="nombre", nullable=false)
 	private String nombreDepartamento;
+	
+	@Column(name="cod_responsable", nullable=false)
 	private int codResponsable;
 	
 	public Departamento() {
