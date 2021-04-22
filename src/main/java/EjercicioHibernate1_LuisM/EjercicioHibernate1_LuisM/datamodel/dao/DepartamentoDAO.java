@@ -13,7 +13,7 @@ public class DepartamentoDAO {
 	}
 	
 	public static List<Departamento> getAllDepartamentos (Session s){
-		String hQuery = "from departamento";
+		String hQuery = "from Departamento";
 		List<Departamento> listaDepartamentos = s.createQuery(hQuery, Departamento.class)
 				   	   			           	.list();
 		return listaDepartamentos;
@@ -21,7 +21,7 @@ public class DepartamentoDAO {
 	
 	public static Departamento getDepartamento(Session s, int codDepartamento) {
 		String hQuery = " from Departamento d " +
-                " where d.codigo = :codDepartamento";
+                " where d.codigoDepartamento = :codDepartamento";
 		
 		Departamento departamento = s.createQuery(hQuery, Departamento.class)
 									.setParameter("codDepartamento", codDepartamento)

@@ -13,7 +13,7 @@ import EjercicioHibernate1_LuisM.EjercicioHibernate1_LuisM.datamodel.entities.Em
 public class EmpleadoDAO {
 	private static Logger logger = LogManager.getLogger(Main.class);
 	
-	public static void insertarEmpleado(Session s, Empleado empleado) {
+	public static void insertEmpleado(Session s, Empleado empleado) {
 		s.save(empleado);
 		logger.info("Empleado insertado. " + empleado.toString());
 		

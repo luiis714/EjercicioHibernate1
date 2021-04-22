@@ -9,7 +9,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import EjercicioHibernate1_LuisM.EjercicioHibernate1_LuisM.datamodel.dao.DepartamentoDAO;
 import EjercicioHibernate1_LuisM.EjercicioHibernate1_LuisM.datamodel.dao.EmpleadoDAO;
+import EjercicioHibernate1_LuisM.EjercicioHibernate1_LuisM.datamodel.entities.Departamento;
 import EjercicioHibernate1_LuisM.EjercicioHibernate1_LuisM.datamodel.entities.Empleado;
 import EjercicioHibernate1_LuisM.EjercicioHibernate1_LuisM.datamodel.util.HibernateUtil;
 
@@ -50,6 +52,9 @@ public class Main
   					case INSERT_EMPLEADO:
   						insertarEmpleado(session);
   						
+  		  				tx.commit();//Commit a la BD
+  		  				logger.info("Se ha hecho un commit a la BD");
+  						
   						break;
   					case GET_EMPLEADOS:
   						muestraEmpleados(session);
@@ -61,6 +66,9 @@ public class Main
   						break;
   					case INSERT_DEPARTAMENTO:
   						insertaDepartamento(session);
+  						
+  		  				tx.commit();//Commit a la BD
+  		  				logger.info("Se ha hecho un commit a la BD");
   						
   						break;
   					case GET_DEPARTAMENTOS:
@@ -77,8 +85,6 @@ public class Main
   					default:
   						System.out.println("No se reconoce la opción seleccionada.");
   				}
-  				tx.commit();//Commit a la BD
-  				logger.info("Se ha hecho un commit a la BD");
   				limpia();
   				
   			}while(opc != SALIR);
@@ -106,18 +112,47 @@ public class Main
     }
 
 	private static void muestraDepartamento(Session session) {
-		// TODO Auto-generated method stub
+		limpia();
+		System.out.println("Codigo departamento: ");
+		int codDepartamento = teclado.nextInt();
+		
+		Departamento d = DepartamentoDAO.getDepartamento(session, codDepartamento);
+		
+		System.out.println(d.toString());
+		logger.info("Empleado " + d.toString());
 		
 	}
 
 	private static void muestraDepartamentos(Session session) {
-		// TODO Auto-generated method stub
+		limpia();
+		List<Departamento> departamentos = DepartamentoDAO.getAllDepartamentos(session);
+		
+		for(short i = 0; i < departamentos.size(); i++) {
+			Departamento d = departamentos.get(i);
+			
+			System.out.println(d.toString());
+			
+			logger.info("Departamento " + i + d.toString());
+		}
 		
 	}
 
 	private static void insertaDepartamento(Session session) {
-		// TODO Auto-generated method stub
+		limpia();
+		Departamento d = new Departamento();
 		
+		//Pido los datos y relleno el departamento con esos datos
+		System.out.println("Codigo departamento: ");
+		d.setCodigoDepartamento(teclado.nextInt());
+		teclado.nextLine();
+		System.out.println("Nombre: ");
+		d.setNombreDepartamento(teclado.nextLine());
+		System.out.println("Codigo responsable: ");
+		d.setCodResponsable(teclado.nextInt());
+		
+		logger.info("Departamento creado. " + d.toString());
+		
+		DepartamentoDAO.insertDepartamento(session, d);
 	}
 
 	private static void muestraEmpleado(Session session) {
@@ -173,7 +208,7 @@ public class Main
 		
 		logger.info("Empleado creado. " + empleado.toString());
 		
-		EmpleadoDAO.insertarEmpleado(s, empleado);
+		EmpleadoDAO.insertEmpleado(s, empleado);
 	}
 
 	private static int mostrarMenu() {
