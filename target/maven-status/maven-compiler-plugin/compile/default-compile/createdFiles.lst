@@ -1,6 +1,5 @@
 EjercicioHibernate1_LuisM\EjercicioHibernate1_LuisM\datamodel\entities\Departamento.class
 EjercicioHibernate1_LuisM\EjercicioHibernate1_LuisM\Main.class
-com\serbatic\course\datamodel\utils\HibernateUtil.class
 EjercicioHibernate1_LuisM\EjercicioHibernate1_LuisM\datamodel\util\HibernateUtil.class
 EjercicioHibernate1_LuisM\EjercicioHibernate1_LuisM\datamodel\dao\DepartamentoDAO.class
 EjercicioHibernate1_LuisM\EjercicioHibernate1_LuisM\datamodel\dao\EmpleadoDAO.class

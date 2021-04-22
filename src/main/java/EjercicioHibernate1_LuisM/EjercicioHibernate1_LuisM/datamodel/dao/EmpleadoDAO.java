@@ -20,7 +20,7 @@ public class EmpleadoDAO {
 	}
 	
 	public static List<Empleado> getAllEmpleados(Session s){
-		String hQuery = "from empleado";
+		String hQuery = "from Empleado";
 		List<Empleado> listaEmpleados = s.createQuery(hQuery, Empleado.class)
 				   	   			           	.list();
 		return listaEmpleados;

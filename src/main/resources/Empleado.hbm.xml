@@ -17,7 +17,7 @@
 		<property generated="never" lazy="false" name="lugarNacimiento" type="java.lang.String">
 			<column name="lugar_nacimiento"/>
 		</property>
-		<property generated="never" lazy="false" name="fechaNacimiento" type="char">
+		<property generated="never" lazy="false" name="fechaNacimiento" type="java.lang.String">
 			<column name="fecha_nacimiento"/>
 		</property>
 		<property generated="never" lazy="false" name="direccion" type="java.lang.String">

@@ -1,5 +1,6 @@
 package EjercicioHibernate1_LuisM.EjercicioHibernate1_LuisM;
 
+import java.util.List;
 import java.util.Scanner;
 
 import org.apache.log4j.LogManager;
@@ -17,10 +18,10 @@ public class Main
 	private static final int LINEAS = 30;
 	private static final int ERROR = -1;
 	private static final int INSERT_EMPLEADO = 1;
-	private static final int GET_EMPLEADO = 2;
+	private static final int GET_EMPLEADOS = 2;
 	private static final int GET_EMPLEADO_ID = 3;
 	private static final int INSERT_DEPARTAMENTO = 4;
-	private static final int GET_DEPARTAMENTO = 5;
+	private static final int GET_DEPARTAMENTOS = 5;
 	private static final int GET_DEPARTAMENTO_ID = 6;
 	private static final int SALIR = 7;
 	
@@ -42,7 +43,7 @@ public class Main
   			
   			int opc = ERROR;
   			do {
-  				limpia();
+  				
   				opc = mostrarMenu();
   				
   				switch(opc) {
@@ -50,7 +51,8 @@ public class Main
   						insertarEmpleado(session);
   						
   						break;
-  					case GET_EMPLEADO:
+  					case GET_EMPLEADOS:
+  						muestraEmpleados(session);
   						
   						break;
   					case GET_EMPLEADO_ID:
@@ -59,7 +61,7 @@ public class Main
   					case INSERT_DEPARTAMENTO:
   						
   						break;
-  					case GET_DEPARTAMENTO:
+  					case GET_DEPARTAMENTOS:
   						
   						break;
   					case GET_DEPARTAMENTO_ID:
@@ -73,6 +75,8 @@ public class Main
   				}
   				tx.commit();//Commit a la BD
   				logger.info("Se ha hecho un commit a la BD");
+  				limpia();
+  				
   			}while(opc != SALIR);
   			
   		} catch (Exception e) {
@@ -97,10 +101,26 @@ public class Main
 		//logger.info(String.format("%1$s: >>>>>> Main execution finished.", methodName));
     }
 
+	private static void muestraEmpleados(Session session) {
+		List<Empleado> empleados = EmpleadoDAO.getAllEmpleados(session);
+		
+		for(short i = 0; i < empleados.size(); i++) {
+			Empleado e = empleados.get(i);
+			
+			e.toString();
+			
+			logger.info("Empleado " + i + e.toString());
+		}
+	}
+
 	private static void insertarEmpleado(Session s) {
 		limpia();
 		Empleado empleado = new Empleado();
 		
+		
+		System.out.println("Codigo empleado: ");
+		empleado.setCodigoEmpleado(teclado.nextInt());
+		teclado.nextLine();
 		System.out.println("Nombre: ");
 		empleado.setNombreEmpleado(teclado.nextLine());
 		System.out.println("Primer apellido: ");
@@ -127,10 +147,10 @@ public class Main
 
 	private static int mostrarMenu() {
 		System.out.println(INSERT_EMPLEADO + ". Insertar un empleado");
-		System.out.println(GET_EMPLEADO + ". Muestra todos los empleados");
+		System.out.println(GET_EMPLEADOS + ". Muestra todos los empleados");
 		System.out.println(GET_EMPLEADO_ID + ". Muestra empleado por ID");
 		System.out.println(INSERT_DEPARTAMENTO + ". Insertar un departamento");
-		System.out.println(GET_DEPARTAMENTO + ". Muestra todos los departamentos");
+		System.out.println(GET_DEPARTAMENTOS + ". Muestra todos los departamentos");
 		System.out.println(GET_DEPARTAMENTO_ID + ". Muestra departamento por ID");
 		System.out.println(SALIR + ". Salir");
 		
@@ -143,6 +163,7 @@ public class Main
 	/**Método que simula un borrado de pantalla en la consola*/
 	private static void limpia() {
 		System.out.println("Pulsa ENTER para continuar...");
+		teclado.nextLine();
 		teclado.nextLine();
 		
 		for(short i = 0; i < LINEAS; i++)
