@@ -14,7 +14,6 @@ import javax.persistence.Table;
 public class Departamento implements Serializable{
 	
 	@Id
-	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "codigo")
 	private int codigoDepartamento;
 	

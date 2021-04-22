@@ -86,6 +86,7 @@ public class Main
   						
   						break;
   					case GET_EMPLEADOS_MAYOR:
+  						muestraEmpleadosMayor(session);
   						
   						break;
   					case SALIR:
@@ -121,6 +122,15 @@ public class Main
 		
 		//logger.info(String.format("%1$s: >>>>>> Main execution finished.", methodName));
     }
+
+	private static void muestraEmpleadosMayor(Session session) {
+		limpia();
+		
+		System.out.println("Indique la edad (Se mostraran mayores a esta): ");
+		int edad = teclado.nextInt();
+		
+		List<Empleado> empleados = EmpleadoDAO.getAllEmpleados(session, edad);
+	}
 
 	private static void muestraEmpleadosDepartamento(Session session) {
 		limpia();
