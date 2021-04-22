@@ -56,15 +56,19 @@ public class Main
   						
   						break;
   					case GET_EMPLEADO_ID:
+  						muestraEmpleado(session);
   						
   						break;
   					case INSERT_DEPARTAMENTO:
+  						insertaDepartamento(session);
   						
   						break;
   					case GET_DEPARTAMENTOS:
+  						muestraDepartamentos(session);
   						
   						break;
   					case GET_DEPARTAMENTO_ID:
+  						muestraDepartamento(session);
   						
   						break;
   					case SALIR:
@@ -101,13 +105,40 @@ public class Main
 		//logger.info(String.format("%1$s: >>>>>> Main execution finished.", methodName));
     }
 
+	private static void muestraDepartamento(Session session) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void muestraDepartamentos(Session session) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void insertaDepartamento(Session session) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void muestraEmpleado(Session session) {
+		limpia();
+		System.out.println("Codigo empleado: ");
+		int codEmpleado = teclado.nextInt();
+		
+		Empleado e = EmpleadoDAO.getEmpleado(session, codEmpleado);
+		
+		System.out.println(e.toString());
+		logger.info("Empleado " + e.toString());
+	}
+
 	private static void muestraEmpleados(Session session) {
+		limpia();
 		List<Empleado> empleados = EmpleadoDAO.getAllEmpleados(session);
 		
 		for(short i = 0; i < empleados.size(); i++) {
 			Empleado e = empleados.get(i);
 			
-			e.toString();
+			System.out.println(e.toString());
 			
 			logger.info("Empleado " + i + e.toString());
 		}

@@ -28,7 +28,7 @@ public class EmpleadoDAO {
 	
 	public static Empleado getEmpleado(Session s, int codEmpleado) {
 		String hQuery = " from Empleado e " +
-                " where e.codigo = :codEmpleado";
+                " where e.codigoEmpleado = :codEmpleado";
 		
 		Empleado empleado= s.createQuery(hQuery, Empleado.class)
 									.setParameter("codEmpleado", codEmpleado)
