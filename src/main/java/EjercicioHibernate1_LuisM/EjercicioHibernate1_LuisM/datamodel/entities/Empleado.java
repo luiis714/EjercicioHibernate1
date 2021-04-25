@@ -2,23 +2,49 @@ package EjercicioHibernate1_LuisM.EjercicioHibernate1_LuisM.datamodel.entities;
 
 import java.io.Serializable;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="empleado")
 public class Empleado implements Serializable{
 	
+	@Id
+	@Column(name = "codigo")
 	private int codigoEmpleado;
+	
+	@Column(name="nombre", nullable=false)
 	private String nombreEmpleado;
+	
+	@Column(name="apellido1", nullable=false)
 	private String apellido1;
+	
+	@Column(name="apellido2", nullable=false)
 	private String apellido2;
+	
+	@Column(name="lugar_nacimiento", nullable=false)
 	private String lugarNacimiento;
+	
+	@Column(name="fecha_nacimiento", nullable=false)
 	private String fechaNacimiento;
+	
+	@Column(name="direccion", nullable=false)
 	private String direccion;
+	
+	@Column(name="telefono", nullable=false)
 	private String telefono;
+	
+	@Column(name="puesto", nullable=false)
 	private String puesto;
+	
+	@Column(name="cod_departamento", nullable=false)
 	private int codDepartamento;
 	
+	/**Constructor sin parametros*/
 	public Empleado() {
 		
 	}
 	
+	/**Constructor con todos sus parametros*/
 	public Empleado(int codigoEmpleado, String nombreEmpleado, String apellido1, String apellido2, String lugarNacimiento, String fechaNacimiento, String direccion, String telefono, String puesto, int codDepartamento) {
 		this.codigoEmpleado = codigoEmpleado;
 		this.nombreEmpleado = nombreEmpleado;
