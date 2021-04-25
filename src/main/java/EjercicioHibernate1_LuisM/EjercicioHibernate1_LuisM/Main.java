@@ -129,7 +129,15 @@ public class Main
 		System.out.println("Indique la edad (Se mostraran mayores a esta): ");
 		int edad = teclado.nextInt();
 		
-		List<Empleado> empleados = EmpleadoDAO.getAllEmpleados(session, edad);
+		List<Empleado> empleados = EmpleadoDAO.getAllEmpleadosEdad(session, edad);
+		
+		for(short i = 0; i < empleados.size(); i++) {
+			Empleado e = empleados.get(i);
+			
+			System.out.println(e.toString());
+			
+			logger.info("Empleado " + i + e.toString());
+		}
 	}
 
 	private static void muestraEmpleadosDepartamento(Session session) {
